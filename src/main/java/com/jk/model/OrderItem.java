@@ -1,5 +1,7 @@
 package com.jk.model;
 
+import java.io.Serializable;
+
 /**
  * <pre>com.jk.model
  * 类名称：OrderItem
@@ -11,7 +13,7 @@ package com.jk.model;
  * 修改备注：
  * @version </pre>
  */
-public class OrderItem {
+public class OrderItem implements Serializable {
 
     private Integer itemid;
     private Integer count;

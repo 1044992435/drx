@@ -1,5 +1,6 @@
 package com.jk.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ import java.util.Set;
  * 修改备注：
  * @version </pre>
  */
-public class CategorySecond {
+public class CategorySecond implements Serializable {
     private Integer csid;
     private String csname;
     // 所属一级分类.存的是一级分类的对象.

@@ -1,5 +1,6 @@
 package com.jk.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +16,7 @@ import java.util.Set;
  * 修改备注：
  * @version </pre>
  */
-public class Order {
+public class Order implements Serializable {
     private Integer oid;
     private Double total;
     private Date ordertime;

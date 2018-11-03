@@ -1,6 +1,8 @@
 package com.jk.model;
 
 
+import java.io.Serializable;
+
 /**
  * <pre>com.jk.model
  * 类名称：AdminUser
@@ -12,7 +14,8 @@ package com.jk.model;
  * 修改备注：
  * @version </pre>
  */
-public class AdminUser {
+public class AdminUser implements Serializable {
+    private static final long serialVersionUID = 7484661769934319916L;
     private Integer uid;
     private String username;
     private String password;

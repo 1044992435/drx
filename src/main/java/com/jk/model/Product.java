@@ -1,5 +1,6 @@
 package com.jk.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  * 修改备注：
  * @version </pre>
  */
-public class Product {
+public class Product implements Serializable {
 
     private Integer pid;
     private String pname;
