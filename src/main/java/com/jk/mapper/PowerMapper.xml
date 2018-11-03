@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.PowerMapper" >
+<select id="queryadminCount" resultType="long">
+  select count(*) from t_AdminUser
+</select>
+<select id="queryadmin" resultType="com.jk.model.AdminUser">
+    select * from t_AdminUser  limit #{st},#{end}
+</select>
+    <select id="queryroleCount" resultType="long">
+  select count(*) from t_role
+</select>
+    <select id="queryrole" resultType="com.jk.model.Role">
+    select * from t_role  limit #{st},#{end}
+</select>
+    <select id="queryRole" resultType="com.jk.model.AdminRole">
+    select r.* from t_role r left join t_admin_role ar on r.id=ar.rid where ar.uid=#{uid}
+</select>
+    <delete id="deleteRole" parameterType="Integer">
+	delete  from t_admin_role   where  uid=#{uid}
+</delete>
+    <insert id="saveRole" >
+        insert into t_admin_role (uid,rid)
+        values
+        <foreach collection="roleIds" item="rid" separator="," >
+            (#{uid},#{rid})
+        </foreach>
+    </insert>
+    <select id="queryTreeByPid" resultType="com.jk.model.Tree">
+	select t.* from t_tree t where pid =#{pid}
+</select>
+    <delete id="deletepower" parameterType="Integer">
+	delete  from t_role_tree   where  rid=#{rid}
+</delete>
+    <insert id="addpower" >
+        insert into t_role_tree (rid,tid)
+        values
+        <foreach collection="ids" item="tid" separator="," >
+            (#{rid},#{tid})
+        </foreach>
+    </insert>
+    <delete id="deleteadmin" parameterType="Integer">
+	delete  from t_AdminUser   where  uid=#{uid}
+</delete>
+    <delete id="deleterole" parameterType="Integer">
+	delete  from t_role   where  id=#{id}
+</delete>
+    <insert id="addroles" >
+        insert into t_role (rname) values  (#{rname})
+      </insert>
+    <update id="updateroles" parameterType="com.jk.model.Role">
+	update  t_role set  rname=#{rname} where  id=#{id}
+</update>
+    <select id="queryRoles" resultType="com.jk.model.Role">
+	select * from t_role  where id =#{id}
+</select>
+    <delete id="deletes" parameterType="com.jk.model.Role" >
+        delete from t_role  where id in
+        <foreach item="id" index="index" collection="ids"
+                 open="(" separator="," close=")">
+            #{id}
+        </foreach>
+  </delete>
+    <select id="queryroletree" resultType="com.jk.model.RoleTree">
+    select tr.* from t_role_tree tr left join t_tree t on
+t.id=tr.tid where rid=#{rid}
+</select>
+</mapper>
